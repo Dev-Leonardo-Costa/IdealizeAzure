@@ -55,4 +55,7 @@ public class PersonService {
         return person;
     }
 
+    public void deletePerson(String idPerson) {
+    }
+
 }

@@ -25,11 +25,16 @@ public class PersonController {
     }
 
     @PostMapping
-    public Person create(Person person){
+    public Person create(@RequestBody Person person){
         return service.createPerson(person);
     }
     @PutMapping
     public Person update(@RequestBody Person person){
         return service.updatePerson(person);
+    }
+
+    @DeleteMapping("/{idPerson}")
+    public void delete(@PathVariable String idPerson){
+        service.deletePerson(idPerson);
     }
 }
