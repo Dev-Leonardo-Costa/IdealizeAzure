@@ -1,61 +1,47 @@
 package com.idealize.services;
 
+import com.idealize.exceptions.ResourceNotFoundException;
 import com.idealize.models.Person;
+import com.idealize.repository.PersonRepostory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
 
 @Service
 public class PersonService {
 
-    private final AtomicLong counter = new AtomicLong();
-    private Logger logger = Logger.getLogger(PersonService.class.getName());
+    @Autowired
+    private PersonRepostory repostory;
 
-    public Person findById(String id) {
-        logger.info("Finding one person");
-        Person person = new Person();
-        person.setId(counter.incrementAndGet());
-        person.setFirstName("Leonardo");
-        person.setLastName("Costa");
-        person.setAddress("Fortaleza-Ce");
-        person.setGender("Male");
-        return person;
+    public Person findById(Long id) {
+        return repostory.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person não existe"));
     }
 
     public List<Person> list() {
-        logger.info("Find All People");
-        List<Person> persons = new ArrayList<>();
-
-        for (int i = 0; i < 8; i++) {
-            Person person = mockPerson(i);
-            persons.add(person);
-        }
-
-        return persons;
-    }
-
-    public Person mockPerson(int i) {
-        Person person = new Person();
-        person.setId(counter.incrementAndGet());
-        person.setFirstName("Leonardo");
-        person.setLastName("Costa");
-        person.setAddress("Fortaleza-Ce");
-        person.setGender("Male");
-        return person;
+        return repostory.findAll();
     }
 
     public Person createPerson(Person person) {
-        return person;
+        return repostory.save(person);
     }
 
     public Person updatePerson(Person person) {
-        return person;
+
+        var entity = repostory.findById(person.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Person não existe"));
+        entity.setFirstName(person.getFirstName());
+        entity.setLastName(person.getLastName());
+        entity.setAddress(person.getAddress());
+        entity.setGender(person.getGender());
+
+        return repostory.save(person);
     }
 
-    public void deletePerson(String idPerson) {
+    public void deletePerson(Long idPerson) {
+        var entity = repostory.findById(idPerson)
+                .orElseThrow(() -> new ResourceNotFoundException("Person não existe"));
+        repostory.delete(entity);
     }
 
 }

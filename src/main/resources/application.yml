@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/idealizeazure?useTimezone=true&serverTimezone=UTC&useLegacyDatetimeCode=false  # URL de conexão com o MySQL
+    username: root # Nome de usuário do MySQL
+    password: comi1bolo  # Senha do MySQL
+    driver-class-name: com.mysql.cj.jdbc.Driver  # Driver do MySQL
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Modo de atualização do esquema do banco de dados (pode ser update, create, create-drop, none)
+    show-sql: false  # Exibir consultas SQL no console (para fins de depuração)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect  # Dialeto do MySQL
+    open-in-view: false  # Configuração para controle de sessão (defina como false para evitar problemas de LazyInitializationException)
+
+server:
+  port: 8080  # Porta em que o servidor deve ser iniciado
+
+# Outras configurações específicas do seu aplicativo

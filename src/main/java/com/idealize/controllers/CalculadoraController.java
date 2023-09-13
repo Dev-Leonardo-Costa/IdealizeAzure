@@ -1,6 +1,6 @@
 package com.idealize.controllers;
 
-import com.idealize.exceptions.UnsupportedMathOperationException;
+import com.idealize.exceptions.ResourceNotFoundException;
 import com.idealize.services.CalcularService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +20,7 @@ public class CalculadoraController {
     public Double sum(@PathVariable String numberOne, @PathVariable String numberTwo) throws Exception {
 
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
+            throw new ResourceNotFoundException("Please set a numeric value");
         }
 
         return service.sum(convertToNumber(numberOne), convertToNumber(numberTwo));
@@ -30,7 +30,7 @@ public class CalculadoraController {
     public Double subtraction(@PathVariable String numberOne, @PathVariable String numberTwo) {
 
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
+            throw new ResourceNotFoundException("Please set a numeric value");
         }
 
         return service.subtraction(convertToNumber(numberOne), convertToNumber(numberTwo));
@@ -40,7 +40,7 @@ public class CalculadoraController {
     public Double division(@PathVariable String numberOne, @PathVariable String numberTwo) {
 
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
+            throw new ResourceNotFoundException("Please set a numeric value");
         }
 
         return service.division(convertToNumber(numberOne), convertToNumber(numberTwo));
@@ -50,7 +50,7 @@ public class CalculadoraController {
     public Double multiplication(@PathVariable String numberOne, @PathVariable String numberTwo) {
 
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
+            throw new ResourceNotFoundException("Please set a numeric value");
         }
 
         return service.multiplication(convertToNumber(numberOne), convertToNumber(numberTwo));
@@ -60,7 +60,7 @@ public class CalculadoraController {
     public Double squareRoot(@PathVariable String number) {
 
         if (!isNumeric(number)) {
-            throw new UnsupportedMathOperationException("Please set a numeric value");
+            throw new ResourceNotFoundException("Please set a numeric value");
         }
 
         return service.squareRoot(convertToNumber(number));
