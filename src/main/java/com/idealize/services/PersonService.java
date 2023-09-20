@@ -11,8 +11,11 @@ import java.util.List;
 @Service
 public class PersonService {
 
-    @Autowired
     private PersonRepostory repostory;
+    @Autowired
+    public PersonService(PersonRepostory repostory) {
+        this.repostory = repostory;
+    }
 
     public Person findById(Long id) {
         return repostory.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person não existe"));

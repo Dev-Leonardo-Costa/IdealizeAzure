@@ -11,8 +11,11 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
-    @Autowired
     private PersonService service;
+    @Autowired
+    public PersonController(PersonService service) {
+        this.service = service;
+    }
 
     @GetMapping("/{idPerson}")
     public Person findById(@PathVariable Long idPerson) {
@@ -37,4 +40,5 @@ public class PersonController {
     public void delete(@PathVariable Long idPerson){
         service.deletePerson(idPerson);
     }
+
 }

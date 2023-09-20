@@ -21,13 +21,24 @@ public class Person implements Serializable {
     @Column(nullable = false, length = 6)
     private String gender;
 
+    @Column(nullable = false, length = 100)
+    private String email;
+
     public Person() {
     }
 
-    public Person(Long id, String firstName, String lastName, String address, String gender) {
+    public Person(Long id, String firstName, String lastName, String email, String address, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.gender = gender;
+    }
+    public Person(String firstName, String lastName, String email, String address, String gender) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
         this.address = address;
         this.gender = gender;
     }
@@ -54,6 +65,14 @@ public class Person implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress() {
