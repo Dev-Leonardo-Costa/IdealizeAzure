@@ -18,9 +18,9 @@ import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 class PersonRepostoryTest {
 
-    private PersonRepostory repostory;
+    private PersonRepository repostory;
     @Autowired
-    public PersonRepostoryTest(PersonRepostory repostory) {
+    public PersonRepostoryTest(PersonRepository repostory) {
         this.repostory = repostory;
     }
 

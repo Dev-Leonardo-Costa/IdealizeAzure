@@ -2,18 +2,19 @@ package com.idealize.services;
 
 import com.idealize.exceptions.ResourceNotFoundException;
 import com.idealize.models.Person;
-import com.idealize.repository.PersonRepostory;
+import com.idealize.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
 
-    private PersonRepostory repostory;
+    private PersonRepository repostory;
     @Autowired
-    public PersonService(PersonRepostory repostory) {
+    public PersonService(PersonRepository repostory) {
         this.repostory = repostory;
     }
 
@@ -26,6 +27,12 @@ public class PersonService {
     }
 
     public Person createPerson(Person person) {
+
+        Optional<Person> savedPerson = repostory.findByEmail(person.getEmail());
+        if (savedPerson.isPresent()){
+            throw new ResourceNotFoundException("Email já existe, informe outro que na seja igual a esse: " + person.getEmail());
+        }
+
         return repostory.save(person);
     }
 
