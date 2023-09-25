@@ -38,15 +38,22 @@ public class PersonService {
 
     public Person updatePerson(Person person) {
 
-        var entity = repostory.findById(person.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Person não existe"));
+        var entity = repostory.findById(person.getId()).orElseThrow(() -> new ResourceNotFoundException("Person não existe"));
+
+        Optional<Person> savedPerson = repostory.findByEmail(person.getEmail());
+        if (savedPerson.isPresent()){
+            throw new ResourceNotFoundException("Email já existe, informe outro que na seja igual a esse: " + person.getEmail());
+        }
+
         entity.setFirstName(person.getFirstName());
         entity.setLastName(person.getLastName());
+        entity.setEmail(person.getEmail());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
         return repostory.save(person);
     }
+
 
     public void deletePerson(Long idPerson) {
         var entity = repostory.findById(idPerson)
