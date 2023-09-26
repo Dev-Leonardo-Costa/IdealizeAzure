@@ -1,6 +1,17 @@
 spring:
   datasource:
-    url: jdbc:h2:~/testdb;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver  # Driver do MySQL
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Modo de atualização do esquema do banco de dados (pode ser update, create, create-drop, none)
+    show-sql: false  # Exibir consultas SQL no console (para fins de depuração)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect  # Dialeto do MySQL
+    open-in-view: false  # Configuração para controle de sessão (defina como false para evitar problemas de LazyInitializationException)
+
+server:
+  port: 8081  # Porta em que o servidor deve ser iniciado
+
+# Outras configurações específicas do seu aplicativo

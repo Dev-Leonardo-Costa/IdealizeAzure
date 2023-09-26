@@ -15,6 +15,6 @@ spring:
     open-in-view: false  # Configuração para controle de sessão (defina como false para evitar problemas de LazyInitializationException)
 
 server:
-  port: 8080  # Porta em que o servidor deve ser iniciado
+  port: 8081  # Porta em que o servidor deve ser iniciado
 
 # Outras configurações específicas do seu aplicativo

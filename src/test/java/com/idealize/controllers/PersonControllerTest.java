@@ -148,7 +148,7 @@ public class PersonControllerTest {
                 .content(mapper.writeValueAsString(personAtualizado)));
 
         // Then
-        response.andExpect(status().isNoContent())
+        response.andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(jsonPath("$.firstName", is(personAtualizado.getFirstName())))
                 .andExpect(jsonPath("$.lastName", is(personAtualizado.getLastName())))
