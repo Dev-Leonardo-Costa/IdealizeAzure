@@ -14,4 +14,7 @@ spring:
 server:
   port: 8081  # Porta em que o servidor deve ser iniciado
 
+file:
+  upload-dir: /home/runner/work/IdealizeAzure/UploadDir
+
 # Outras configurações específicas do seu aplicativo
