@@ -14,7 +14,7 @@ jobs:
     - name: Login para Docker Hub
       uses: docker/login-action@v3.0.0
       with:
-        username: ${{ vars.USER_NAME }}
+        username: ${{ vars.DOCKER_USERNAME }}
         password: ${{ vars.DOCKER_PASSWORD }}
     
     - name: Set up JDK 19
