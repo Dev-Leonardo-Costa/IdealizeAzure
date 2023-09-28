@@ -23,14 +23,6 @@ jobs:
         java-version: '19'
         distribution: 'adopt'
         cache: maven
-        
-    - name: Build application JAR
-      working-directory: ./Downloads/idealize
-      run: mvn clean package
-
-    - name: Docker compose build
-      working-directory: ./Downloads
-      run: docker compose build
 
     - name: Docker compose build
       run: |
