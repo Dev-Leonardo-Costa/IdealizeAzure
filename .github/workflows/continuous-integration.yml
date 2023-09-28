@@ -24,6 +24,14 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
+    - name: Build application JAR
+      working-directory: /Downloads/idealize
+      run: mvn clean package
+
+    - name: Docker compose build
+      working-directory: /Downloads
+      run: docker compose build
+
     - name: Docker compose build
       run: |
         docker tag ${{ vars.DOCKER_USERNAME }}/idealize:latest ${{ vars.DOCKER_USERNAME }}/idealize:${{ github.run_id }}
