@@ -25,7 +25,7 @@ jobs:
         cache: maven
         
     - name: Build application jar
-      working-directory: ./idealize
+      working-directory: idealize
       run: mvn clean package
 
     - name: Docker compose build
