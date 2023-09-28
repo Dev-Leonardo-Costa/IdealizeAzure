@@ -1,4 +1,4 @@
-name: Continuous Integration Git Hub Actions
+name: Continuous Integration no Git Hub Actions
 
 on:
   push:
