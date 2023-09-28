@@ -24,12 +24,12 @@ jobs:
         distribution: 'adopt'
         cache: maven
         
-    - name: Build application jar
-      working-directory: idealize
+    - name: Build application JAR
+      working-directory: ./Downloads/idealize
       run: mvn clean package
 
     - name: Docker compose build
-      working-directory: Downloads/idealize
+      working-directory: ./Downloads
       run: docker compose build
 
     - name: Docker compose build
